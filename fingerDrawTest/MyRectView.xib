@@ -3,55 +3,27 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyRectView" customModule="fingerDrawTest" customModuleProvider="target">
-            <connections>
-                <outlet property="testRect" destination="n36-Ia-NCM" id="Yty-Sl-XI0"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyRectView" customModule="fingerDrawTest" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="test_rect.png" translatesAutoresizingMaskIntoConstraints="NO" id="n36-Ia-NCM">
-                    <rect key="frame" x="71" y="144" width="150" height="150"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4no-sw-yCe">
+                    <rect key="frame" x="15" y="8" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <gestureRecognizers/>
+                    <state key="normal" title="add"/>
                     <connections>
-                        <outletCollection property="gestureRecognizers" destination="wzE-2g-HLG" appends="YES" id="P7k-xT-SIj"/>
-                        <outletCollection property="gestureRecognizers" destination="Wi0-8P-LbC" appends="YES" id="Xi4-ft-gzj"/>
-                        <outletCollection property="gestureRecognizers" destination="j9F-Oh-wGe" appends="YES" id="Djs-Ce-TXD"/>
+                        <action selector="clickAddBtn:" destination="-1" eventType="touchUpInside" id="rVM-QA-X34"/>
                     </connections>
-                </imageView>
+                </button>
             </subviews>
-            <color key="backgroundColor" systemColor="systemPinkColor"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="95.652173913043484" y="83.705357142857139"/>
         </view>
-        <panGestureRecognizer minimumNumberOfTouches="1" id="wzE-2g-HLG">
-            <connections>
-                <action selector="handlePan:" destination="-1" id="gIt-Dr-WBc"/>
-            </connections>
-        </panGestureRecognizer>
-        <pinchGestureRecognizer id="Wi0-8P-LbC">
-            <connections>
-                <action selector="handlePinch:" destination="-1" id="4Jy-3s-h52"/>
-            </connections>
-        </pinchGestureRecognizer>
-        <rotationGestureRecognizer id="j9F-Oh-wGe">
-            <connections>
-                <action selector="handleRotation:" destination="-1" id="njq-U3-KCz"/>
-            </connections>
-        </rotationGestureRecognizer>
     </objects>
-    <resources>
-        <image name="test_rect.png" width="129" height="121"/>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>
