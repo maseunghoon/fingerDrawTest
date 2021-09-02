@@ -80,16 +80,20 @@ class MyRectView: UIView {
             v.isEndBtnMode = false
         }
         
+        var width:CGFloat = gestureView.frame.width + translation.x
+        var height:CGFloat = gestureView.frame.height + translation.y
+        
+        width = width < 80 ? 80 : width
+        height = height < 80 ? 80 : height
+        
         if v.isEndBtnMode {
-            gestureView.frame = CGRect(x: gestureView.frame.origin.x, y: gestureView.frame.origin.y, width: gestureView.frame.width + translation.x, height: gestureView.frame.height + translation.y)
-            
+            gestureView.frame = CGRect(x: gestureView.frame.origin.x, y: gestureView.frame.origin.y, width: width, height: height)
             gesture.setTranslation(.zero, in: self)
         } else {
             gestureView.center = CGPoint(
                 x: gestureView.center.x + translation.x,
                 y: gestureView.center.y + translation.y
             )
-
             gesture.setTranslation(.zero, in: self)
         }
     }
