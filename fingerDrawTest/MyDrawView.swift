@@ -4,7 +4,7 @@
 //
 //  Created by maseunghoon on 2021/08/25.
 //
-
+// 자유도형
 import UIKit
 
 class MyDrawView: UIView {
@@ -34,7 +34,7 @@ class MyDrawView: UIView {
     }
 
     override func draw(_ rect: CGRect) {
-        var context:CGContext! = UIGraphicsGetCurrentContext()
+        let context:CGContext! = UIGraphicsGetCurrentContext()
         
         context.setLineWidth(5)
         context.setStrokeColor(UIColor.blue.cgColor)
@@ -42,7 +42,7 @@ class MyDrawView: UIView {
         
         context.beginPath()
         
-        for (index,it) in pointArray.enumerated(){
+        for (index,_) in pointArray.enumerated(){
             let p0:CGPoint = pointArray[index]
             
             if pointArray.count > index + 1 {

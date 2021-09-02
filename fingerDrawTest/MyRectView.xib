@@ -13,11 +13,36 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4no-sw-yCe">
-                    <rect key="frame" x="15" y="8" width="30" height="30"/>
+                    <rect key="frame" x="1" y="8" width="58" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="add"/>
+                    <state key="normal" title="add rect"/>
                     <connections>
                         <action selector="clickAddBtn:" destination="-1" eventType="touchUpInside" id="rVM-QA-X34"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="df9-6R-dmS">
+                    <rect key="frame" x="64" y="8" width="30" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="del"/>
+                    <connections>
+                        <action selector="clickDelBtn:" destination="-1" eventType="touchUpInside" id="PL2-GO-u0r"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2v-gk-QdI">
+                    <rect key="frame" x="112" y="8" width="41" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="del all"/>
+                    <connections>
+                        <action selector="clickDelBtn:" destination="-1" eventType="touchUpInside" id="qZa-oa-kwb"/>
+                        <action selector="clickDeleteAll:" destination="-1" eventType="touchUpInside" id="uUC-aJ-Fep"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05I-PW-Rjx">
+                    <rect key="frame" x="187" y="8" width="81" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="select reset"/>
+                    <connections>
+                        <action selector="clickSelectReset:" destination="-1" eventType="touchUpInside" id="LMY-ew-wuO"/>
                     </connections>
                 </button>
             </subviews>

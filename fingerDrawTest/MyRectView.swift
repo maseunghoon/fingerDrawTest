@@ -4,10 +4,10 @@
 //
 //  Created by maseunghoon on 2021/08/25.
 //
-
+// 사각형
 import UIKit
 
-class MyRectView: UIView {
+class MyRectView: UIView, UIGestureRecognizerDelegate {
     var view:UIView!
     
     @IBOutlet var panGEST: UIPanGestureRecognizer!
@@ -24,7 +24,7 @@ class MyRectView: UIView {
     */
 
     var figureArray:[CustomObjectView]! = []
-    
+    var selectedFigureTag:Int = -1
     var tag_index = 0
     
     override init(frame: CGRect) {
@@ -59,9 +59,43 @@ class MyRectView: UIView {
         
         c.gestureRecognizers = [pinGEST,panGEST,rotationGEST,TapGEST]
         c.tag = tag_index
+        c.coverView.isHidden = false
+        
+        
+        for it in figureArray {
+            it.coverView.isHidden = true
+        }
         
         figureArray.append(c)
         tag_index = tag_index + 1
+    }
+    
+    @IBAction func clickDelBtn(_ sender: Any) {
+        if figureArray.count > 0 {
+            for (idx, it) in figureArray.enumerated() {
+                if it.tag == selectedFigureTag {
+                    figureArray.remove(at: idx)
+                    it.removeFromSuperview()
+                    selectedFigureTag = -1
+                }
+            }
+        }
+    }
+    
+    @IBAction func clickDeleteAll(_ sender: Any) {
+        for it in figureArray {
+            it.removeFromSuperview()
+        }
+        
+        figureArray.removeAll()
+        selectedFigureTag = -1
+    }
+    
+    @IBAction func clickSelectReset(_ sender: Any) {
+        for it in figureArray {
+            it.coverView.isHidden = true
+        }
+        selectedFigureTag = -1
     }
     
     @objc func handlePan(_ gesture: UIPanGestureRecognizer) {
@@ -77,19 +111,69 @@ class MyRectView: UIView {
         }
         
         if gesture.state == .ended {
-            v.isEndBtnMode = false
+            v.isTopRightBtnMode = false
+            v.isTopLeftBtnMode = false
+            v.isCenterBtnMode = false
+            v.isBottomRightBtnMode = false
+            v.isBottomLeftBtnMode = false
         }
         
-        var width:CGFloat = gestureView.frame.width + translation.x
-        var height:CGFloat = gestureView.frame.height + translation.y
-        
-        width = width < 80 ? 80 : width
-        height = height < 80 ? 80 : height
-        
-        if v.isEndBtnMode {
+        if v.isBottomRightBtnMode {
+            var width:CGFloat = gestureView.frame.width + translation.x
+            var height:CGFloat = gestureView.frame.height + translation.y
+            width = width < 80 ? 80 : width
+            height = height < 80 ? 80 : height
+            
             gestureView.frame = CGRect(x: gestureView.frame.origin.x, y: gestureView.frame.origin.y, width: width, height: height)
             gesture.setTranslation(.zero, in: self)
-        } else {
+        } else if v.isBottomLeftBtnMode {
+            var x:CGFloat = gestureView.frame.origin.x + translation.x
+            var width:CGFloat = gestureView.frame.width - translation.x
+            var height:CGFloat = gestureView.frame.height + translation.y
+            width = width < 80 ? 80 : width
+            height = height < 80 ? 80 : height
+            
+            if width == CGFloat(80) {
+                x = gestureView.frame.maxX - width
+            }
+            
+            gestureView.frame = CGRect(x: x, y: gestureView.frame.origin.y, width: width, height: height)
+            gesture.setTranslation(.zero, in: self)
+            
+        } else if v.isTopRightBtnMode {
+            var y:CGFloat = gestureView.frame.origin.y + translation.y
+            var width:CGFloat = gestureView.frame.width + translation.x
+            var height:CGFloat = gestureView.frame.height - translation.y
+            width = width < 80 ? 80 : width
+            height = height < 80 ? 80 : height
+            
+            if height == CGFloat(80) {
+                y = gestureView.frame.maxY - height
+            }
+            
+            gestureView.frame = CGRect(x: gestureView.frame.origin.x, y: y, width: width, height: height)
+            gesture.setTranslation(.zero, in: self)
+            
+        } else if v.isTopLeftBtnMode {
+            var x:CGFloat = gestureView.frame.origin.x + translation.x
+            var y:CGFloat = gestureView.frame.origin.y + translation.y
+            var width:CGFloat = gestureView.frame.width - translation.x
+            var height:CGFloat = gestureView.frame.height - translation.y
+            width = width < 80 ? 80 : width
+            height = height < 80 ? 80 : height
+            
+            if width == CGFloat(80) {
+                x = gestureView.frame.maxX - width
+            }
+            
+            if height == CGFloat(80) {
+                y = gestureView.frame.maxY - height
+            }
+            
+            gestureView.frame = CGRect(x: x, y: y, width: width, height: height)
+            gesture.setTranslation(.zero, in: self)
+            
+        } else if v.isCenterBtnMode {
             gestureView.center = CGPoint(
                 x: gestureView.center.x + translation.x,
                 y: gestureView.center.y + translation.y
@@ -143,15 +227,16 @@ class MyRectView: UIView {
         let v:CustomObjectView = (gestureView as? CustomObjectView)!
         v.coverView.isHidden = false
         
-//        gestureView.center = CGPoint(
-//          x: gestureView.center.x + translation.x,
-//          y: gestureView.center.y + translation.y
-//        )
-//
-//        gesture.setTranslation(.zero, in: self)
+        if v.tag == selectedFigureTag {
+            return
+        }
+        
+        selectedFigureTag = v.tag
+        self.addSubview(v)
     }
-    
-//    override func draw(_ rect: CGRect) {
-//        super.draw(rect)
-//    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        let isControllTapped = touch.view is UIControl
+        return !isControllTapped
+    }
 }

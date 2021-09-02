@@ -10,7 +10,14 @@ import UIKit
 class CustomObjectView: UIView {
     var view:UIView!
     @IBOutlet var realView: UIView!
-    var isEndBtnMode:Bool = false
+
+    @IBOutlet var tempImageView: UIImageView!
+    
+    var isTopRightBtnMode:Bool = false
+    var isTopLeftBtnMode:Bool = false
+    var isBottomLeftBtnMode:Bool = false
+    var isBottomRightBtnMode:Bool = false
+    var isCenterBtnMode:Bool = false
     
     @IBOutlet var coverView: UIView!
     override init(frame: CGRect) {
@@ -31,23 +38,27 @@ class CustomObjectView: UIView {
             content.frame = self.bounds
             self.addSubview(content)
         }
-    }
-
-    @IBAction func clickEndBtn(_ sender: Any) {
-        print("touch up inside end btn.!")
-    }
-    
-    @IBAction func touchDownEndBtn(_ sender: Any) {
-        print("touch down end btn.")
-        isEndBtnMode = true
+        
+        tempImageView.layer.borderWidth = 1
+        tempImageView.layer.borderColor = UIColor.red.cgColor
     }
     
-    @IBAction func touchupOutsideEndBtn(_ sender: Any) {
-        print("touch up outside end btn.!")
+    @IBAction func touchDownBtn(_ sender: Any) {
+        let tag = (sender as! UIButton).tag
+        
+        if tag == 0 {
+            isTopLeftBtnMode = true
+        } else if tag == 1 {
+            isTopRightBtnMode = true
+        } else if tag == 2 {
+            isBottomLeftBtnMode = true
+        } else if tag == 3 {
+            isBottomRightBtnMode = true
+        } else if tag == 4 {
+            isCenterBtnMode = true
+        }
     }
     
-    @IBAction func touchCancelEndBtn(_ sender: Any) {
-        print("touch cancel end btn.")
-//        isEndBtnMode = false
-    }
+    
+    
 }
