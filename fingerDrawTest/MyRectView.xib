@@ -17,7 +17,15 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="add rect"/>
                     <connections>
-                        <action selector="clickAddBtn:" destination="-1" eventType="touchUpInside" id="rVM-QA-X34"/>
+                        <action selector="clickAddRectBtn:" destination="-1" eventType="touchUpInside" id="85c-S6-oHt"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7K-J5-50y" userLabel="add circle">
+                    <rect key="frame" x="-3" y="54" width="67" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="add circle"/>
+                    <connections>
+                        <action selector="clickAddCircleButton:" destination="-1" eventType="touchUpInside" id="T5x-Lj-NaF"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="df9-6R-dmS">

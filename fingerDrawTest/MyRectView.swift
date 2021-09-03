@@ -48,19 +48,49 @@ class MyRectView: UIView, UIGestureRecognizerDelegate {
         }
     }
     
-    @IBAction func clickAddBtn(_ sender: Any) {
+    @IBAction func clickAddCircleButton(_ sender: Any) {
         let c:CustomObjectView = CustomObjectView(frame: CGRect(x: 50, y: 50, width: 100, height: 100))
+        
+        c.makeCircle()
+        
         self.addSubview(c)
   
         let pinGEST:UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(self.handlePinch(_:)))
         let panGEST:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handlePan(_:)))
-        let rotationGEST:UIRotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(self.handleRotation(_:)))
+//        let rotationGEST:UIRotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(self.handleRotation(_:)))
         let TapGEST:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         
-        c.gestureRecognizers = [pinGEST,panGEST,rotationGEST,TapGEST]
+//        c.gestureRecognizers = [pinGEST,panGEST,rotationGEST,TapGEST]
+        c.gestureRecognizers = [pinGEST,panGEST,TapGEST]
         c.tag = tag_index
         c.coverView.isHidden = false
         
+        
+        for it in figureArray {
+            it.coverView.isHidden = true
+        }
+        
+        figureArray.append(c)
+        tag_index = tag_index + 1
+        
+    }
+    
+    @IBAction func clickAddRectBtn(_ sender: Any) {
+        let c:CustomObjectView = CustomObjectView(frame: CGRect(x: 50, y: 50, width: 100, height: 100))
+        
+        c.makeRect()
+        
+        self.addSubview(c)
+  
+        let pinGEST:UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(self.handlePinch(_:)))
+        let panGEST:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handlePan(_:)))
+//        let rotationGEST:UIRotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(self.handleRotation(_:)))
+        let TapGEST:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        
+//        c.gestureRecognizers = [pinGEST,panGEST,rotationGEST,TapGEST]
+        c.gestureRecognizers = [pinGEST,panGEST,TapGEST]
+        c.tag = tag_index
+        c.coverView.isHidden = false
         
         for it in figureArray {
             it.coverView.isHidden = true
@@ -125,6 +155,12 @@ class MyRectView: UIView, UIGestureRecognizerDelegate {
             height = height < 80 ? 80 : height
             
             gestureView.frame = CGRect(x: gestureView.frame.origin.x, y: gestureView.frame.origin.y, width: width, height: height)
+            
+            if v.type == .SHAPE_CIRCLE {
+                let min = (v.tempImageView.frame.size.width < v.tempImageView.frame.size.height) ? v.tempImageView.frame.size.width : v.tempImageView.frame.size.height
+                v.tempImageView.layer.cornerRadius = min / 2
+            }
+            
             gesture.setTranslation(.zero, in: self)
         } else if v.isBottomLeftBtnMode {
             var x:CGFloat = gestureView.frame.origin.x + translation.x
@@ -199,21 +235,21 @@ class MyRectView: UIView, UIGestureRecognizerDelegate {
         gesture.scale = 1
     }
     
-    @objc func handleRotation(_ gesture: UIRotationGestureRecognizer) {
-        guard let gestureView = gesture.view else {
-          return
-        }
-        
-        let v:CustomObjectView = (gestureView as? CustomObjectView)!
-        if v.coverView.isHidden {
-            return
-        }
-
-        gestureView.transform = gestureView.transform.rotated(
-          by: gesture.rotation
-        )
-        gesture.rotation = 0
-    }
+//    @objc func handleRotation(_ gesture: UIRotationGestureRecognizer) {
+//        guard let gestureView = gesture.view else {
+//          return
+//        }
+//
+//        let v:CustomObjectView = (gestureView as? CustomObjectView)!
+//        if v.coverView.isHidden {
+//            return
+//        }
+//
+//        gestureView.transform = gestureView.transform.rotated(
+//          by: gesture.rotation
+//        )
+//        gesture.rotation = 0
+//    }
     
     @objc func handleTap(_ gesture: UITapGestureRecognizer) {
         guard let gestureView = gesture.view else {

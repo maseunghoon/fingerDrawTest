@@ -6,12 +6,18 @@
 //
 
 import UIKit
+enum SHAPE_TYPE {
+    case SHAPE_RECT
+    case SHAPE_CIRCLE
+}
 
 class CustomObjectView: UIView {
     var view:UIView!
     @IBOutlet var realView: UIView!
 
     @IBOutlet var tempImageView: UIImageView!
+    
+    var type:SHAPE_TYPE = .SHAPE_RECT
     
     var isTopRightBtnMode:Bool = false
     var isTopLeftBtnMode:Bool = false
@@ -38,9 +44,6 @@ class CustomObjectView: UIView {
             content.frame = self.bounds
             self.addSubview(content)
         }
-        
-        tempImageView.layer.borderWidth = 1
-        tempImageView.layer.borderColor = UIColor.red.cgColor
     }
     
     @IBAction func touchDownBtn(_ sender: Any) {
@@ -59,6 +62,19 @@ class CustomObjectView: UIView {
         }
     }
     
+    func makeRect(){
+        tempImageView.layer.borderWidth = 1
+        tempImageView.layer.borderColor = UIColor.red.cgColor
+        
+        self.type = .SHAPE_RECT
+    }
     
+    func makeCircle(){
+        tempImageView.layer.borderWidth = 1
+        tempImageView.layer.borderColor = UIColor.red.cgColor
+        tempImageView.layer.cornerRadius = tempImageView.frame.size.height / 2
+        
+        self.type = .SHAPE_CIRCLE 
+    }
     
 }
