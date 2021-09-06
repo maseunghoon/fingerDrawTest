@@ -7,24 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F10FF5226DF96FD00F8A860 /* CustomObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F10FF5126DF96FD00F8A860 /* CustomObjectView.swift */; };
-		5F10FF5426DF970200F8A860 /* CustomObjectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F10FF5326DF970200F8A860 /* CustomObjectView.xib */; };
 		5FDC47E426D6387100F5663C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDC47E326D6387100F5663C /* AppDelegate.swift */; };
 		5FDC47E626D6387100F5663C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDC47E526D6387100F5663C /* SceneDelegate.swift */; };
 		5FDC47E826D6387100F5663C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDC47E726D6387100F5663C /* ViewController.swift */; };
 		5FDC47EB26D6387100F5663C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FDC47E926D6387100F5663C /* Main.storyboard */; };
 		5FDC47ED26D6387200F5663C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FDC47EC26D6387200F5663C /* Assets.xcassets */; };
 		5FDC47F026D6387200F5663C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FDC47EE26D6387200F5663C /* LaunchScreen.storyboard */; };
-		5FDC47F826D638C600F5663C /* MyDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDC47F726D638C600F5663C /* MyDrawView.swift */; };
-		5FDC47FA26D638DC00F5663C /* MyDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FDC47F926D638DC00F5663C /* MyDrawView.xib */; };
-		5FDC47FC26D66DC600F5663C /* MyRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDC47FB26D66DC600F5663C /* MyRectView.swift */; };
-		5FDC47FE26D66DCD00F5663C /* MyRectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FDC47FD26D66DCD00F5663C /* MyRectView.xib */; };
-		5FDC480026D66DED00F5663C /* test_rect.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FDC47FF26D66DED00F5663C /* test_rect.png */; };
+		5FF4D9F926E6463E005B7D2D /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF4D9F626E6463E005B7D2D /* DrawingView.swift */; };
+		5FF4D9FA26E6463E005B7D2D /* ShapeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF4D9F726E6463E005B7D2D /* ShapeManager.swift */; };
+		5FF4D9FB26E6463E005B7D2D /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF4D9F826E6463E005B7D2D /* Shape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5F10FF5126DF96FD00F8A860 /* CustomObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomObjectView.swift; sourceTree = "<group>"; };
-		5F10FF5326DF970200F8A860 /* CustomObjectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomObjectView.xib; sourceTree = "<group>"; };
 		5FDC47E026D6387100F5663C /* fingerDrawTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fingerDrawTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDC47E326D6387100F5663C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FDC47E526D6387100F5663C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,11 +27,9 @@
 		5FDC47EC26D6387200F5663C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FDC47EF26D6387200F5663C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5FDC47F126D6387200F5663C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5FDC47F726D638C600F5663C /* MyDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDrawView.swift; sourceTree = "<group>"; };
-		5FDC47F926D638DC00F5663C /* MyDrawView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDrawView.xib; sourceTree = "<group>"; };
-		5FDC47FB26D66DC600F5663C /* MyRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRectView.swift; sourceTree = "<group>"; };
-		5FDC47FD26D66DCD00F5663C /* MyRectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyRectView.xib; sourceTree = "<group>"; };
-		5FDC47FF26D66DED00F5663C /* test_rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_rect.png; sourceTree = "<group>"; };
+		5FF4D9F626E6463E005B7D2D /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		5FF4D9F726E6463E005B7D2D /* ShapeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeManager.swift; sourceTree = "<group>"; };
+		5FF4D9F826E6463E005B7D2D /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,20 +64,24 @@
 			children = (
 				5FDC47E326D6387100F5663C /* AppDelegate.swift */,
 				5FDC47E526D6387100F5663C /* SceneDelegate.swift */,
+				5FF4D9F526E6463E005B7D2D /* Shape */,
 				5FDC47E726D6387100F5663C /* ViewController.swift */,
 				5FDC47E926D6387100F5663C /* Main.storyboard */,
-				5FDC47F726D638C600F5663C /* MyDrawView.swift */,
-				5FDC47F926D638DC00F5663C /* MyDrawView.xib */,
-				5FDC47FB26D66DC600F5663C /* MyRectView.swift */,
-				5FDC47FD26D66DCD00F5663C /* MyRectView.xib */,
-				5F10FF5126DF96FD00F8A860 /* CustomObjectView.swift */,
-				5F10FF5326DF970200F8A860 /* CustomObjectView.xib */,
-				5FDC47FF26D66DED00F5663C /* test_rect.png */,
 				5FDC47EC26D6387200F5663C /* Assets.xcassets */,
 				5FDC47EE26D6387200F5663C /* LaunchScreen.storyboard */,
 				5FDC47F126D6387200F5663C /* Info.plist */,
 			);
 			path = fingerDrawTest;
+			sourceTree = "<group>";
+		};
+		5FF4D9F526E6463E005B7D2D /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				5FF4D9F626E6463E005B7D2D /* DrawingView.swift */,
+				5FF4D9F726E6463E005B7D2D /* ShapeManager.swift */,
+				5FF4D9F826E6463E005B7D2D /* Shape.swift */,
+			);
+			path = Shape;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,13 +141,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F10FF5426DF970200F8A860 /* CustomObjectView.xib in Resources */,
 				5FDC47F026D6387200F5663C /* LaunchScreen.storyboard in Resources */,
 				5FDC47ED26D6387200F5663C /* Assets.xcassets in Resources */,
-				5FDC47FA26D638DC00F5663C /* MyDrawView.xib in Resources */,
 				5FDC47EB26D6387100F5663C /* Main.storyboard in Resources */,
-				5FDC47FE26D66DCD00F5663C /* MyRectView.xib in Resources */,
-				5FDC480026D66DED00F5663C /* test_rect.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,12 +154,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FF4D9F926E6463E005B7D2D /* DrawingView.swift in Sources */,
+				5FF4D9FA26E6463E005B7D2D /* ShapeManager.swift in Sources */,
 				5FDC47E826D6387100F5663C /* ViewController.swift in Sources */,
 				5FDC47E426D6387100F5663C /* AppDelegate.swift in Sources */,
-				5F10FF5226DF96FD00F8A860 /* CustomObjectView.swift in Sources */,
-				5FDC47F826D638C600F5663C /* MyDrawView.swift in Sources */,
+				5FF4D9FB26E6463E005B7D2D /* Shape.swift in Sources */,
 				5FDC47E626D6387100F5663C /* SceneDelegate.swift in Sources */,
-				5FDC47FC26D66DC600F5663C /* MyRectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
