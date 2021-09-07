@@ -12,6 +12,7 @@ enum ShapeType {
     case circle
     case rect
     case line
+    case ankleLine
 }
 
 protocol ShapeInteractable {
@@ -52,6 +53,7 @@ class ShapeManager: UIView, ShapeInteractable {
         self.shapeType = shapeType
         self.lineColor = lineColor
         self.frame = frame
+        self.clipsToBounds = false
 
         switch shapeType {
         case .circle:
@@ -75,6 +77,17 @@ class ShapeManager: UIView, ShapeInteractable {
             self.addSubview(movingStartButton)
             self.addSubview(movingEndButton)
             break
+        case .ankleLine:
+            let movingStartButton = makebutton(center: CGPoint(x: frame.size.width - 10, y: 10))
+            let movingCenterButton = makeAnkleCenterButton(center: CGPoint(x: (frame.size.width/2) - 10, y: (frame.size.height/2) - 10))
+            let movingEndButton = makebutton(center: CGPoint(x: frame.size.width - 10, y: frame.size.height - 10))
+            self.movingButtons.append(movingStartButton)
+            self.movingButtons.append(movingCenterButton)
+            self.movingButtons.append(movingEndButton)
+            self.addSubview(movingStartButton)
+            self.addSubview(movingCenterButton)
+            self.addSubview(movingEndButton)
+            break
         }
         
         self.setLineColor()
@@ -93,6 +106,26 @@ class ShapeManager: UIView, ShapeInteractable {
         let pangesture = UIPanGestureRecognizer(target: self, action: #selector(self.panned(gesture:)))
         pangesture.maximumNumberOfTouches = 1
         btn.addGestureRecognizer(pangesture)
+        
+        return btn
+    }
+    
+    func makeAnkleCenterButton(center:CGPoint) -> UIButton {
+        
+        var btn:UIButton  = UIButton(type: .system)
+        btn = UIButton(type: .system)
+        btn.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        btn.backgroundColor = self.lineColor
+        btn.center = center
+        btn.tag = 100
+        btn.setTitle("C", for: .normal)
+//        btn.setImage(UIImage(named : "ico_player_draw_size", in : Bundle(for: self.classForCoder), compatibleWith: nil), for: .normal)
+        btn.layer.cornerRadius = 10
+        btn.layer.masksToBounds = true
+        btn.isUserInteractionEnabled = false
+//        let pangesture = UIPanGestureRecognizer(target: self, action: #selector(self.panned(gesture:)))
+//        pangesture.maximumNumberOfTouches = 1
+//        btn.addGestureRecognizer(pangesture)
         
         return btn
     }
@@ -120,6 +153,20 @@ class ShapeManager: UIView, ShapeInteractable {
             movingEndButton.center = CGPoint(x: frame.size.width - 10, y: frame.size.height - 10)
             self.movingButtons.append(movingEndButton)
             break
+        case .ankleLine:
+            let movingStartButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            movingStartButton.backgroundColor = .yellow
+            movingStartButton.center = CGPoint(x: frame.size.width - 10, y: 10)
+            self.movingButtons.append(movingStartButton)
+            let movingCenterButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            movingCenterButton.backgroundColor = .yellow
+            movingCenterButton.center = CGPoint(x: (frame.size.width/2) - 10, y: (frame.size.height/2) - 10)
+            self.movingButtons.append(movingCenterButton)
+            let movingEndButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            movingEndButton.backgroundColor = .yellow
+            movingEndButton.center = CGPoint(x: frame.size.width - 10, y: frame.size.height - 10)
+            self.movingButtons.append(movingEndButton)
+            break
         }
     }
     
@@ -138,6 +185,12 @@ class ShapeManager: UIView, ShapeInteractable {
         if #available(iOS 9.0, *) {
             let startMovingButtonFrame = self.movingButtons.first!.frame
             var endMovingButtonFrame:CGRect? = .zero
+            
+            var centerMovingButtonFrame:CGRect? = .zero
+            if shapeType == .ankleLine {
+                centerMovingButtonFrame = self.movingButtons[1].frame
+            }
+            
             if movingButtons.count >= 2 {
                 endMovingButtonFrame = self.movingButtons.last!.frame
             }
@@ -147,6 +200,10 @@ class ShapeManager: UIView, ShapeInteractable {
                 self.lineColor = color
                 self.setLineColor()
                 self.movingButtons.first!.frame = startMovingButtonFrame
+            
+                if self.shapeType == .ankleLine {
+                    self.movingButtons[1].frame = centerMovingButtonFrame!
+                }
                 
                 if self.movingButtons.count >= 2 {
                     self.movingButtons.last!.frame = endMovingButtonFrame!
@@ -159,8 +216,17 @@ class ShapeManager: UIView, ShapeInteractable {
     
     internal func isMovalble(on point: CGPoint) -> Bool {
         if self.isSelected {
-            let movableRect = CGRect(x: center.x - 10, y: center.y - 10, width: 20, height: 20)
-            return movableRect.contains(point)
+            switch shapeType {
+            case .ankleLine:
+                let btn = movingButtons[1]
+                let target_point:CGPoint = CGPoint(x: btn.center.x + self.frame.origin.x,
+                                                   y: btn.center.y + self.frame.origin.y)
+                return target_point.distance(to: point) < 20
+            default:
+                let movableRect = CGRect(x: center.x - 10, y: center.y - 10, width: 20, height: 20)
+                return movableRect.contains(point)
+            }
+            
         }
         return false
     }
@@ -180,7 +246,13 @@ class ShapeManager: UIView, ShapeInteractable {
             
             return selectableRect.contains(point)
         case .line:
-             return self.center.distance(to: point) < 20
+            return self.center.distance(to: point) < 20
+        case .ankleLine:
+            let btn = movingButtons[1]
+            let target_point:CGPoint = CGPoint(x: btn.center.x + self.frame.origin.x,
+                                               y: btn.center.y + self.frame.origin.y)
+            return target_point.distance(to: point) < 20
+            
         }
     }
     
@@ -189,11 +261,24 @@ class ShapeManager: UIView, ShapeInteractable {
         super.draw(rect)
         
         if self.isSelected {
-            //(named name: String, in bundle: Bundle?, compatibleWith traitCollection: UITraitCollection?)
-            if let image = UIImage(named : "ico_player_draw_move", in : Bundle(for: self.classForCoder), compatibleWith: nil) {
-                let drawingPoint = CGPoint(x: (rect.size.width - image.size.width) / 2, y: (rect.size.height - image.size.width) / 2)
-                image.draw(at: drawingPoint)
+            
+            switch shapeType {
+            case .ankleLine:
+                let btn = movingButtons[1]
+                if let image = UIImage(named : "ico_player_draw_move", in : Bundle(for: self.classForCoder), compatibleWith: nil) {
+                    btn.setImage(image, for: .normal)
+                    btn.setTitle("", for: .normal)
+                }
+                
+            default:
+                if let image = UIImage(named : "ico_player_draw_move", in : Bundle(for: self.classForCoder), compatibleWith: nil) {
+                    let drawingPoint = CGPoint(x: (rect.size.width - image.size.width) / 2, y: (rect.size.height - image.size.width) / 2)
+                    image.draw(at: drawingPoint)
+                }
+                break
             }
+            
+            
         }
         
         switch shapeType {
@@ -218,6 +303,12 @@ class ShapeManager: UIView, ShapeInteractable {
             self.lineColor.setStroke()
             let shape:Shape = Shape()
             shape.makeShapeLine(context: UIGraphicsGetCurrentContext(), firstCenter: (self.movingButtons.first?.center)!, lastCenter: (self.movingButtons.last?.center)!)
+            break
+        case .ankleLine:
+            self.lineColor.setStroke()
+            let shape:Shape = Shape()
+            shape.makeShapeAnkleLine(context: UIGraphicsGetCurrentContext(),
+                                     firstCenter: (self.movingButtons.first?.center)!, centerCenter: (self.movingButtons[1].center), lastCenter: (self.movingButtons.last?.center)!)
             break
         }
     }
@@ -279,6 +370,59 @@ class ShapeManager: UIView, ShapeInteractable {
                                          y: otherBtnY)
             touchedButton.center = CGPoint(x: touchBtnX,
                                            y: touchBtnY)
+            break
+        case .ankleLine:
+            guard let touchedButton = gesture.view as? UIButton,
+                  let otherButtonIndex = self.movingButtons.index(where: { $0 != gesture.view && $0.tag != 100 }) else {
+                    return
+            }
+            
+            let touchPoint = gesture.location(in: self.superview)
+            let touchPointInSelf = gesture.location(in: self)
+
+            let centerButton = self.movingButtons[1]
+            let centerXinSuperView = centerButton.center.x + self.frame.origin.x
+            let centerYinSuperView = centerButton.center.y + self.frame.origin.y
+            
+            let otherButton = self.movingButtons[otherButtonIndex]
+            let otherXinSuperView = otherButton.center.x + self.frame.origin.x
+            let otherYinSuperView = otherButton.center.y + self.frame.origin.y
+            
+            let x = min(otherXinSuperView, touchPoint.x, centerXinSuperView) - 20
+            let y = min(otherYinSuperView, touchPoint.y, centerYinSuperView) - 20
+            
+            let xtranslated = frame.origin.x - x
+            let ytranslated = frame.origin.y - y
+//            self.frame = CGRect(x: x, y: y, width: width, height: height)
+                        
+            let otherBtnX = otherButton.center.x + xtranslated
+            let otherBtnY = otherButton.center.y + ytranslated
+            let touchBtnX = touchPointInSelf.x
+            let touchBtnY = touchPointInSelf.y
+            
+            otherButton.center = CGPoint(x: otherBtnX,
+                                         y: otherBtnY)
+            touchedButton.center = CGPoint(x: touchBtnX,
+                                           y: touchBtnY)
+            
+            let centerBtnX = centerButton.center.x + xtranslated
+            let centerBtnY = centerButton.center.y + ytranslated
+            centerButton.center = CGPoint(x: centerBtnX,
+                                           y: centerBtnY)
+
+            let min_x = min(otherBtnX, centerBtnX, touchBtnX) + self.frame.origin.x
+            let min_y = min(otherBtnY, centerBtnY, touchBtnY) + self.frame.origin.y
+            let max_x = max(otherBtnX, centerBtnX, touchBtnX) + self.frame.origin.x
+            let max_y = max(otherBtnY, centerBtnY, touchBtnY) + self.frame.origin.y
+            
+            let width = abs(max_x - min_x) + 80
+            let height = abs(max_y - min_y) + 80
+
+            self.frame = CGRect(x: x, y: y, width: width, height: height)
+
+            self.layer.borderWidth = 1
+            self.layer.borderColor = UIColor.blue.cgColor
+            
             break
         }
         self.setNeedsDisplay()

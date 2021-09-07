@@ -82,6 +82,14 @@
                                                     <action selector="selectColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hpD-Hx-LFw"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VX-n7-kxW">
+                                                <rect key="frame" x="83" y="76" width="39" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Ankle"/>
+                                                <connections>
+                                                    <action selector="addAnkleLine:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yVb-fw-HSI"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>

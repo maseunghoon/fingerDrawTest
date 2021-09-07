@@ -46,6 +46,16 @@ class ViewController: UIViewController {
         drawingView.add(shape: line)
     }
     
+    @IBAction func addAnkleLine(_ sender: Any) {
+        let ankle = ShapeManager(frame: CGRect(x: drawingView.frame.size.width / 2 - 50,
+                                              y: drawingView.frame.size.height / 2 - 50,
+                                              width: 100,
+                                              height: 100),
+                                lineColor: selectedColor, shapeType:.ankleLine)
+        drawingView.add(shape: ankle)
+    }
+    
+    
     @IBAction func undo(_ sender: Any) {
         drawingView.undoSelectedShape()
     }

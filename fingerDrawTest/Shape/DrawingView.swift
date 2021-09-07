@@ -166,8 +166,19 @@ class DrawingView: UIView {
         }
 
         if self.movingShape != nil {
-        
-            self.movingShape?.center = touchPoint
+       
+            if let m_shaple = self.movingShape {
+                switch m_shaple.shapeType {
+                case .ankleLine:
+                    let btn = m_shaple.movingButtons[1]
+                    m_shaple.center = CGPoint(x: ((m_shaple.frame.width/2) - btn.center.x) + touchPoint.x,
+                                                       y: ((m_shaple.frame.height/2) - btn.center.y) + touchPoint.y)
+                default:
+                    m_shaple.center = touchPoint
+                }
+            }
+            
+//            self.movingShape?.center = touchPoint
             
         }
         else if self.isPanning {
