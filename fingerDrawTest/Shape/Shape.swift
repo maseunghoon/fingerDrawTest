@@ -42,23 +42,28 @@ class Shape {
         context?.addLine(to: centerCenter)
         context?.addLine(to: lastCenter)
 
-//        var angleDegree = atan((lastCenter.y - centerCenter.y)/(lastCenter.x - centerCenter.x)) - atan((firstCenter.y - centerCenter.y)/(firstCenter.x - centerCenter.x))
-//        angleDegree = angleDegree * CGFloat((180.0 / .pi))
+        context?.move(to: centerCenter)
         
-        let m12 = (CGFloat)(firstCenter.y - centerCenter.y) / (CGFloat)(firstCenter.x - centerCenter.x)
-        let m34 = (CGFloat)(lastCenter.y - centerCenter.y) / (CGFloat)(lastCenter.x - centerCenter.x)
-
-        var angleDegree = self.getAngleBetweenTwoLines(m1: m12, m2: m34)
+        let start = getAngle(center: centerCenter, point: firstCenter, radius: 15)
+        let end = getAngle(center: centerCenter, point: lastCenter, radius: 15)
         
-        if (angleDegree < 0.0) {
-            angleDegree = 180 + angleDegree;
-        }
         
         context?.addArc(center: centerCenter, radius: 15,
-                        startAngle: atan((lastCenter.y - centerCenter.y)/(lastCenter.x - centerCenter.x)),
-                        endAngle: atan((firstCenter.y - centerCenter.y)/(firstCenter.x - centerCenter.x)),
-                        clockwise: true)
+                        startAngle: start,
+                        endAngle: end,
+                        clockwise: false)
         
+//        print("start : \(start), end : \(end)")
+//        print("start_d : \((start / .pi * 180)), end_d : \((end / .pi * 180))")
+        
+        let start_d = (start / .pi * 180)
+        let end_d = (end / .pi * 180)
+        
+        var angleDegree = end_d - start_d
+        if (angleDegree < 0.0) {
+            angleDegree = 360 + angleDegree;
+        }
+
         context?.strokePath()
         
         UIGraphicsPushContext(context!)
@@ -70,11 +75,14 @@ class Shape {
         UIGraphicsPopContext()
     }
     
-    public func getAngleBetweenTwoLines(m1:CGFloat, m2:CGFloat) -> CGFloat{
-        let m:CGFloat = (m1 - m2) / (1 + m1 * m2)
-        let radian:CGFloat = -atan(m) // or (float) -Math.atan(m)
-        let degree:CGFloat = (CGFloat) (radian / .pi * 180)
-//        let degree:CGFloat = (CGFloat) (radian * (180.0 / .pi))
-        return degree
+    func getAngle(center: CGPoint, point: CGPoint, radius: CGFloat) -> CGFloat {
+        let origin = CGPoint(x: center.x + radius, y: center.y)
+
+        let v1 = CGVector(dx: origin.x - center.x, dy: origin.y - center.y)
+        let v2 = CGVector(dx: point.x - center.x, dy: point.y - center.y)
+
+        let angle = atan2(v2.dy, v2.dx) - atan2(v1.dy, v1.dx)
+
+        return angle
     }
 }
