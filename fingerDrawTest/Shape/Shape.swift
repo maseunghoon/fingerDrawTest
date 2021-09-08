@@ -35,7 +35,7 @@ class Shape {
         context?.strokePath()
     }
     
-    func makeShapeAnkleLine(context:CGContext?, firstCenter:CGPoint, centerCenter:CGPoint, lastCenter:CGPoint) {
+    func makeShapeAngleLine(context:CGContext?, firstCenter:CGPoint, centerCenter:CGPoint, lastCenter:CGPoint, color:UIColor) {
         
         context?.setLineWidth(2.0)
         context?.move(to: firstCenter)
@@ -46,7 +46,6 @@ class Shape {
         
         let start = getAngle(center: centerCenter, point: firstCenter, radius: 15)
         let end = getAngle(center: centerCenter, point: lastCenter, radius: 15)
-        
         
         context?.addArc(center: centerCenter, radius: 15,
                         startAngle: start,
@@ -69,9 +68,13 @@ class Shape {
         UIGraphicsPushContext(context!)
         
         let font = UIFont.systemFont(ofSize: 15)
-        let color = UIColor.red
+        let color = color
         let string = NSAttributedString(string: String(format: "%1.f°", angleDegree), attributes: [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: color])
-        string.draw(at: CGPoint(x: centerCenter.x + 20, y: centerCenter.y - 10))
+        
+        let x = CGFloat(20)
+        let y = CGFloat(10)
+        string.draw(at: CGPoint(x: centerCenter.x + x, y: centerCenter.y - y))
+        
         UIGraphicsPopContext()
     }
     

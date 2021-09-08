@@ -46,15 +46,43 @@ class ViewController: UIViewController {
         drawingView.add(shape: line)
     }
     
-    @IBAction func addAnkleLine(_ sender: Any) {
-        let ankle = ShapeManager(frame: CGRect(x: drawingView.frame.size.width / 2 - 50,
+    @IBAction func addAngleLine(_ sender: Any) {
+        let angle = ShapeManager(frame: CGRect(x: drawingView.frame.size.width / 2 - 50,
                                               y: drawingView.frame.size.height / 2 - 50,
                                               width: 100,
                                               height: 100),
-                                lineColor: selectedColor, shapeType:.ankleLine)
-        drawingView.add(shape: ankle)
+                                lineColor: selectedColor, shapeType:.angleLine)
+        drawingView.add(shape: angle)
     }
     
+    
+    @IBOutlet var colorButtonCollection: [UIButton]!
+    @IBAction func clickColorBtn(_ sender: Any) {
+        for it in colorButtonCollection {
+            it.isSelected = false
+        }
+        
+        let btn = sender as! UIButton
+        btn.isSelected = true
+        let tag = btn.tag
+        
+        switch tag {
+        case 0:
+            selectedColor = UIColor.red
+            break
+        case 1:
+            selectedColor = UIColor.blue
+            break
+        case 2:
+            selectedColor = UIColor.green
+            break
+        case 3:
+            selectedColor = UIColor.yellow
+            break
+        default:
+            break
+        }
+    }
     
     @IBAction func undo(_ sender: Any) {
         drawingView.undoSelectedShape()

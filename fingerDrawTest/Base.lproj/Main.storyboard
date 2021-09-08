@@ -74,20 +74,59 @@
                                                     <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pfd-sP-xmd"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHg-LG-8rq">
-                                                <rect key="frame" x="31" y="123" width="35" height="30"/>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JKh-K9-AEV">
+                                                <rect key="frame" x="0.0" y="113" width="139" height="39"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="color"/>
-                                                <connections>
-                                                    <action selector="selectColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hpD-Hx-LFw"/>
-                                                </connections>
-                                            </button>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHg-LG-8rq">
+                                                        <rect key="frame" x="2" y="2" width="30" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                        <state key="selected" image="ico_player_draw_move"/>
+                                                        <connections>
+                                                            <action selector="clickColorBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bnJ-wN-NeC"/>
+                                                            <action selector="selectColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hpD-Hx-LFw"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONm-Gl-rH4">
+                                                        <rect key="frame" x="36" y="2" width="30" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                        <state key="selected" image="ico_player_draw_move"/>
+                                                        <connections>
+                                                            <action selector="clickColorBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cwl-Ol-Bmp"/>
+                                                            <action selector="selectColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bv5-lQ-4BT"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OdU-O3-Z03">
+                                                        <rect key="frame" x="69" y="2" width="30" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <state key="selected" image="ico_player_draw_move"/>
+                                                        <connections>
+                                                            <action selector="clickColorBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="74I-Su-cs8"/>
+                                                            <action selector="selectColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UDi-iA-mB3"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0x-Jb-5Fa">
+                                                        <rect key="frame" x="105" y="2" width="30" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                        <state key="selected" image="ico_player_draw_move"/>
+                                                        <connections>
+                                                            <action selector="clickColorBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mZy-gX-ucV"/>
+                                                            <action selector="selectColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LhQ-OL-REa"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VX-n7-kxW">
-                                                <rect key="frame" x="83" y="76" width="39" height="30"/>
+                                                <rect key="frame" x="83" y="76" width="40" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Ankle"/>
+                                                <state key="normal" title="Angle"/>
                                                 <connections>
-                                                    <action selector="addAnkleLine:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yVb-fw-HSI"/>
+                                                    <action selector="addAngleLine:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c9E-5b-GvU"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -102,6 +141,10 @@
                     </view>
                     <connections>
                         <outlet property="drawingView" destination="Zei-Sg-2yh" id="xMz-9O-pMb"/>
+                        <outletCollection property="colorButtonCollection" destination="ZHg-LG-8rq" collectionClass="NSMutableArray" id="i3c-IN-6Xm"/>
+                        <outletCollection property="colorButtonCollection" destination="ONm-Gl-rH4" collectionClass="NSMutableArray" id="7gQ-aa-VYS"/>
+                        <outletCollection property="colorButtonCollection" destination="OdU-O3-Z03" collectionClass="NSMutableArray" id="QNN-jz-aC6"/>
+                        <outletCollection property="colorButtonCollection" destination="F0x-Jb-5Fa" collectionClass="NSMutableArray" id="nOk-hz-4ow"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -116,9 +159,25 @@
         <image name="ico_player_draw_delete" width="23" height="23"/>
         <image name="ico_player_draw_delete_dim" width="23" height="23"/>
         <image name="ico_player_draw_line" width="23" height="23"/>
+        <image name="ico_player_draw_move" width="16" height="16"/>
         <image name="ico_player_draw_square" width="23" height="23"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

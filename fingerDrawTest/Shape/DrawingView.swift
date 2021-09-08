@@ -169,7 +169,7 @@ class DrawingView: UIView {
        
             if let m_shaple = self.movingShape {
                 switch m_shaple.shapeType {
-                case .ankleLine:
+                case .angleLine:
                     let btn = m_shaple.movingButtons[1]
                     m_shaple.center = CGPoint(x: ((m_shaple.frame.width/2) - btn.center.x) + touchPoint.x,
                                                        y: ((m_shaple.frame.height/2) - btn.center.y) + touchPoint.y)
